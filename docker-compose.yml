@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # Any changes to app_blue service must be replicated to app_green service
+  app_blue:
+    image: app_base
+    build:
+      dockerfile: Dockerfile
+      context: ./app
+    expose:
+      - 80
+    restart: on-failure
+
+  # Any changes to app_green service must be replicated to app_blue service
+  app_green:
+    image: app_base
+    expose:
+      - 80
+    restart: on-failure
+
+  balancer:
+    image: balancer
+    build:
+      context: ./balancer
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
