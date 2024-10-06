@@ -1,13 +1,13 @@
 # Blue-Green deployment using Docker and NGINX
 
 This project implements the blue-green deployment strategy using Docker and Docker Compose.
-The architecture consists of two identical application instances (blue and green)
+The architecture consists of two application instances (blue and green)
 and a load balancer (NGINX) that routes traffic between them.
 
 ## Blue-Green deployment architecture
 
 This implementation of the blue-green deployment strategy allows for seamless and low-risk
-deployments by maintaining two identical production environments (blue and green) that can
+deployments by maintaining two production environments (blue and green) that can
 be switched between with ease.
 
 The architecture consists of the following components:
@@ -19,10 +19,12 @@ The architecture consists of the following components:
 
 ## Using on production
 
+From there you will need a remote server with root access
 To set up the blue-green deployment architecture:
 
-1. Set up a remote Git repository with a `post-receive` hook to trigger the deployment script. There's a working example below
-2. On the same machine, install Docker and start all services.
+1. [Set up a remote Git repository](https://git-scm.com/book/en/v2/Git-on-the-Server-Setting-Up-the-Server) on your production machine
+1. Customize the `post-receive` hook to trigger the deployment script. There's a working example below.
+2. On the same machine, install Docker and start all your services (`docker compose up -d`). 
 3. Push to your remote, and enjoy verbose deployment process directly in Git output.
 
 
